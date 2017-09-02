@@ -15,7 +15,7 @@ def home():
     """Return the index page of the website."""
     return "Welcome to the home page!"
 
-
+USERNAME = "David Dean"
 PASSWORD_HASH = ("pbkdf2:sha256:50000$5IlJl0hD$d7de1b21471b85a7b6"
                  "efdd93bd5ee568309ab33c632648a9f58553208becdd6b")
 
@@ -30,7 +30,7 @@ def login():
     if request.method == "POST":    # Try to log in
         username = request.form["username"].lower()
         password = request.form["password"]
-        if username == "daviddeanadmin" and check_password_hash(PASSWORD_HASH, password):
+        if username == USERNAME and check_password_hash(PASSWORD_HASH, password):
             return redirect(url_for("home"))
         else:
             error = "Invalid username or password. Please try again."
