@@ -4,6 +4,7 @@ Created: 2017-09-02
 Author: Andrew Dean
 """
 from functools import wraps
+import sqlite3
 
 from flask import Flask, render_template, redirect, url_for, flash
 from flask import request, session
@@ -13,6 +14,14 @@ from werkzeug.security import check_password_hash
 app = Flask(__name__)
 
 app.secret_key = "my secret key >:)"    # Required for `session` variable to be used
+
+app.database = "example.db"
+
+
+def sql(query):
+    """Execute the given SQL query on app.database."""
+    with sqlite3.connect(app.database) as connection:
+        return connection.cursor().execute(query)
 
 
 def logged_in() -> bool:
