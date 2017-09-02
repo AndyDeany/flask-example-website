@@ -11,9 +11,9 @@ app = Flask(__name__)
 
 
 @app.route("/")
-def index():
+def home():
     """Return the index page of the website."""
-    return "index"
+    return "Welcome to the home page!"
 
 
 PASSWORD_HASH = ("pbkdf2:sha256:50000$5IlJl0hD$d7de1b21471b85a7b6"
@@ -31,7 +31,7 @@ def login():
     password = request.form["password"]
     if request.method == "POST":    # Try to log in
         if username == "daviddeanadmin" and check_password_hash(PASSWORD_HASH, password):
-            return redirect(url_for("index"))
+            return redirect(url_for("home"))
         else:
             error = "Invalid username or password. Please try again."
 
