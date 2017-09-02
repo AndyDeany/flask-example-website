@@ -3,7 +3,7 @@
 Created: 2017-09-02
 Author: Andrew Dean
 """
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect, url_for, request
 from werkzeug.security import check_password_hash
 
 
