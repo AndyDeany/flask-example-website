@@ -63,7 +63,7 @@ def login():
             flash("You were just logged in.")
             return redirect(url_for("home"))
         else:
-            error = "Invalid username or password. Please try again."
+            error = "Invalid credentials. Please try again."
 
     return render_template("login.html", error=error)
 
