@@ -15,7 +15,7 @@ def home():
     """Return the index page of the website."""
     return "Welcome to the home page!"
 
-USERNAME = "David Dean"
+USERNAME = "david"
 PASSWORD_HASH = ("pbkdf2:sha256:50000$5IlJl0hD$d7de1b21471b85a7b6"
                  "efdd93bd5ee568309ab33c632648a9f58553208becdd6b")
 
