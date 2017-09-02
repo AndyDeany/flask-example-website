@@ -15,11 +15,16 @@ app = Flask(__name__)
 app.secret_key = "my secret key >:)"    # Required for `session` variable to be used
 
 
+def logged_in() -> bool:
+    """Return whether or not the user is logged in."""
+    return "logged_in" in session
+
+
 def login_required(function):
     """Decorator which only allows logged in users to access the route it decorates."""
     @wraps(function)
     def wrap(*args, **kwargs):
-        if "logged_in" in session:
+        if logged_in():
             return function(*args, **kwargs)
         else:
             flash("You need to log in first.")
@@ -45,6 +50,10 @@ def login():
     A GET request will return the html for the login page.
     A POST request will attempt to login.
     """
+    if logged_in():
+        # Don't let logged in users log in again.
+        return redirect(url_for("home"))
+
     error = None
     if request.method == "POST":    # Try to log in
         username = request.form["username"].lower()
