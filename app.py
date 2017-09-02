@@ -58,9 +58,10 @@ def login():
 
 
 @app.route("/logout")
+@login_required
 def logout():
     """Log the user out."""
-    session.pop("logged_in", None)  # Remove the "logged_in" key if it's there
+    del session["logged_in"]
     flash("You were just logged out.")
     return redirect(url_for("login"))
 
