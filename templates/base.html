@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Flask Example</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
+</head>
+<body>
+  <div class="container">
+
+    <!-- child template content -->
+    {% block content %}{% endblock %}
+
+    <!-- error message (if there is one -->
+    {% if error %}
+      <p class="error"><strong>Error:</strong> {{error}}</p>
+    {% endif %}
+
+    <!-- flash messages -->
+    {% for message in get_flashed_messages() %}
+      <p>{{message}}</p>
+    {% endfor %}
+  </div>
+</body>
+</html>
