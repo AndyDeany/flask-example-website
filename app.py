@@ -35,6 +35,7 @@ def login():
         password = request.form["password"]
         if username == USERNAME and check_password_hash(PASSWORD_HASH, password):
             session["logged_in"] = True
+            flash("You were just logged in.")
             return redirect(url_for("home"))
         else:
             error = "Invalid username or password. Please try again."
@@ -46,6 +47,7 @@ def login():
 def logout():
     """Log the user out."""
     session.pop("logged_in", None)  # Remove the "logged_in" key if it's there
+    flash("You were just logged out.")
     return redirect(url_for("login"))
 
 
