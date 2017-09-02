@@ -27,9 +27,9 @@ def login():
     A POST request will attempt to login.
     """
     error = None
-    username = request.form["username"].lower()
-    password = request.form["password"]
     if request.method == "POST":    # Try to log in
+        username = request.form["username"].lower()
+        password = request.form["password"]
         if username == "daviddeanadmin" and check_password_hash(PASSWORD_HASH, password):
             return redirect(url_for("home"))
         else:
