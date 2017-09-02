@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>News</h2>
+{% for post in posts %}
+  <div class="post">
+    <h3>{{post["title"]}}</h3>
+    <hr>
+    <p>{{post["content"]}}</p>
+  </div>
+{% endfor %}
+{% endblock %}
