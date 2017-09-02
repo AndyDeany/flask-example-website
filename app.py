@@ -86,5 +86,14 @@ def home():
     return render_template("index.html")
 
 
+@app.route("/news")
+@login_required
+def news():
+    """Return the latest news."""
+    posts = sql("SELECT * FROM posts").fetchall()
+    posts = ({"title": post[0], "content": post[1]} for post in posts)
+    return render_template("news.html", posts=posts)
+
+
 if __name__ == "__main__":
     app.run(debug=True)
