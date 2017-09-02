@@ -15,7 +15,7 @@ app.secret_key = "my secret key >:)"    # Required for `session` variable to be 
 @app.route("/")
 def home():
     """Return the index page of the website."""
-    return "Welcome to the home page!"
+    return render_template("index.html")
 
 USERNAME = "david"
 PASSWORD_HASH = ("pbkdf2:sha256:50000$5IlJl0hD$d7de1b21471b85a7b6"
