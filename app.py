@@ -32,13 +32,6 @@ def login_required(function):
     return wrap
 
 
-@app.route("/")
-@login_required
-def home():
-    """Return the index page of the website."""
-    return render_template("index.html")
-
-
 USERNAME = "david"
 PASSWORD_HASH = ("pbkdf2:sha256:50000$5IlJl0hD$d7de1b21471b85a7b6"
                  "efdd93bd5ee568309ab33c632648a9f58553208becdd6b")
@@ -75,6 +68,13 @@ def logout():
     del session["logged_in"]
     flash("You were just logged out.")
     return redirect(url_for("login"))
+
+
+@app.route("/")
+@login_required
+def home():
+    """Return the index page of the website."""
+    return render_template("index.html")
 
 
 if __name__ == "__main__":
