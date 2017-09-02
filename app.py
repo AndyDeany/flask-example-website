@@ -3,6 +3,8 @@
 Created: 2017-09-02
 Author: Andrew Dean
 """
+from functools import wraps
+
 from flask import Flask, render_template, redirect, url_for, flash
 from flask import request, session
 from werkzeug.security import check_password_hash
@@ -11,6 +13,18 @@ from werkzeug.security import check_password_hash
 app = Flask(__name__)
 
 app.secret_key = "my secret key >:)"    # Required for `session` variable to be used
+
+
+def login_required(function):
+    """Decorator which only allows logged in users to access the route it decorates."""
+    @wraps(function)
+    def wrap(*args, **kwargs):
+        if "logged_in" in session:
+            return function(*args, **kwargs)
+        else:
+            flash("You need to log in first.")
+            return redirect(url_for("login"))
+    return wrap
 
 
 @app.route("/")
