@@ -8,7 +8,16 @@
 </head>
 <body>
   <div class="container">
-    <p>Please login</p>
+    <h2>Please login</h2>
+    <form method="post">
+      <input type="text" placeholder="Username" name="username"
+             value="{{ request.form.username }}">
+      <input type="password" placeholder="Password" name="password"
+             value="{{ request.form.password }}">
+    </form>
+    {% if error %}
+      <p class="error"><strong>Error:</strong> {{ error }}</p>
+    {% endif %}
   </div>
 </body>
 </html>
