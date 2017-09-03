@@ -31,3 +31,10 @@ with description("/login"):
         response = test_app.post("/login", data=data, follow_redirects=True).data.decode()
         expect(response).to(contain("Invalid credentials. Please try again."))
         expect(response).to(contain("Please enter your credentials to login"))
+
+    with it("should redirect users who are already logged in to the home page"):
+        test_app = app.test_client()
+        data = {"username": credentials.USERNAME, "password": credentials.PASSWORD}
+        test_app.post("/login", data=data)
+        response = test_app.get("/login", follow_redirects=True).data.decode()
+        expect(response).to(contain("Welcome to the home page!"))
