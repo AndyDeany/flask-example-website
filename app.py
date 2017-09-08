@@ -90,9 +90,15 @@ def home():
 @login_required
 def news():
     """Return the latest news."""
-    posts = sql("SELECT * FROM posts").fetchall()
-    posts = ({"title": post[0], "content": post[1]} for post in posts)
-    return render_template("news.html", posts=posts)
+    posts = ()
+    error = None
+    try:
+        posts = sql("SELECT * FROM posts").fetchall()
+    except sqlite3.OperationalError:
+        error = "Failed to retrieve news."
+    else:
+        posts = ({"title": post[0], "content": post[1]} for post in posts)
+    return render_template("news.html", posts=posts, error=error)
 
 
 if __name__ == "__main__":
