@@ -8,7 +8,7 @@ fi
 site=daviddean
 environment=${1,,}
 
-if [ $environment != "prod" ]
+if [ $environment != "production" ]
 then
     site=$environment-$site
 fi
