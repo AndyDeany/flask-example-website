@@ -14,7 +14,7 @@ Jinja2==2.9.6
 mamba==0.8.6
 MarkupSafe==1.0
 pathtools==0.1.2
-PyYAML==3.12
+PyYAML==5.4
 requests==2.18.4
 urllib3==1.22
 virtualenv==15.1.0
